@@ -1,11 +1,4 @@
-/* const menu = document.querySelector('.menu');
-const menuItem = menu.querySelector('.items')
-
-menu.addEventListener('click',e=>{
-    menuItem.classList.toggle('hidden')
-})
- */
-// global scope problem
+import View from "./view.js";
 
 const App = {
     $: {
@@ -154,4 +147,13 @@ const App = {
     }
 };
 
-window.addEventListener('load',App.init);
+
+
+
+function init(){
+    const view = new View();
+
+    //console.log(view.$.turn);
+}
+
+window.addEventListener('load',init) 
