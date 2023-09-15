@@ -152,8 +152,22 @@ const App = {
 
 function init(){
     const view = new View();
+    
+    view.bindGameResetEvent((e)=>{
+        console.log("reset");
+        console.log(e);
+    })
+   
+    view.bindNewRoundEvent(e=>{
+        console.log("new round ",e);
+    }) 
 
-    //console.log(view.$.turn);
+    view.bindPlayerMoveEvent(e=>{
+        view.setTurnIndicator(2)
+        
+        view.handlePlayerMove(e.target,1);
+    })
+
 }
 
 window.addEventListener('load',init) 
