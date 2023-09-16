@@ -35,7 +35,7 @@ export default class View{
     }
     bindPlayerMoveEvent(handler){
         this.$$.squares.forEach(square=>{
-            square.addEventListener('click',handler)
+            square.addEventListener('click',()=>handler(square))
         });
     }
 
@@ -53,7 +53,7 @@ export default class View{
     
     handlePlayerMove(squareEl,player){
         const icon = document.createElement('i')
-        icon.classList.add('fa-solid',player===1 ? 'fa-x':'fa-o',player===1 ? 'yellow':'turquoise')
+        icon.classList.add('fa-solid',player.iconClass,player.colorClass)
         squareEl.replaceChildren(icon)
     }
 
@@ -62,12 +62,13 @@ export default class View{
         const icon = document.createElement('i')
         const label = document.createElement('p')
 
-        this.$.turn.classList.add(player===1 ? 'yellow':'turquoise')
-        this.$.turn.classList.remove(player===1 ? 'turquoise':'yellow')
+        icon.classList.add(player.colorClass)
+        icon.classList.add('fa-solid',player.colorClass,player.iconClass);
 
-        icon.classList.add('fa-solid',player===1 ? 'fa-x':'fa-o')
-        label.innerText=(player===1 ? 'Player 1, youre up!  ':'Player 2 youre up')
-       
+        label.classList.add(player.colorClass)
+
+        label.innerText = `${player.name}, you're up!`
+        
         this.$.turn.replaceChildren(icon,label)
     }
 
